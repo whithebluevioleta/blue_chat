@@ -1,0 +1,12 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "cSpell.words": [
+        "cupertino",
+        "firestore",
+        "fluttertoast",
+        "recaptcha",
+        "Schyler",
+        "spinkit"
+    ]
+}

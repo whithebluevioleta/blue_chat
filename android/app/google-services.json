@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "103274894155",
+    "project_id": "blue-chat-7174c",
+    "storage_bucket": "blue-chat-7174c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:103274894155:android:bc728c23ea7a06ded68ece",
+        "android_client_info": {
+          "package_name": "com.avansaz.blue_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZi9pEFZyrYilNnqo6H0X_8y8gwx3lXn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

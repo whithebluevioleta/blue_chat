@@ -1,0 +1,38 @@
+// Archivo de configuración de Gradle de nivel de proyecto (root-level build.gradle)
+
+buildscript {
+    repositories {
+        google() // Repositorio de Google para dependencias de Android
+        mavenCentral() // Repositorio central de Maven
+    }
+    dependencies {
+        // Dependencias para el script de construcción de Gradle
+        classpath "com.android.tools.build:gradle:8.1.0" // Plugin de Android Gradle
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.20" // Plugin de Kotlin
+        classpath "com.google.gms:google-services:4.4.2" // Plugin de Google Services para Firebase
+    }
+}
+
+allprojects {
+    repositories {
+        google() // Asegura que todos los subproyectos también usen estos repositorios
+        mavenCentral()
+    }
+}
+
+// Configura el directorio de build en el nivel del proyecto raíz
+rootProject.buildDir = "../build"
+
+// Personaliza el directorio de build para cada subproyecto (incluyendo el módulo app)
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+
+    // Asegura que todos los subproyectos dependan de la evaluación del módulo app
+    project.evaluationDependsOn(":app")
+}
+
+// Tarea para limpiar el directorio de build en el nivel del proyecto raíz
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
+

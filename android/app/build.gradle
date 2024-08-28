@@ -1,0 +1,71 @@
+plugins {
+    id("com.android.application")
+    // Configuración de FlutterFire (Firebase)
+    id("com.google.gms.google-services")
+    id("kotlin-android")
+    // El plugin de Flutter debe aplicarse después de los plugins de Android y Kotlin.
+    id("dev.flutter.flutter-gradle-plugin")
+}
+
+android {
+    namespace = "com.avansaz.blue_chat"
+    compileSdk = 34  // Asegúrate de que sea compatible con la versión de Flutter
+    ndkVersion = "21.3.6528147"  // Puedes especificar la versión de NDK si es necesario
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        // Identificador único de la aplicación
+        applicationId = "com.avansaz.blue_chat"
+        // Configura los SDK mínimos y de destino, junto con la versión de la app
+        minSdk = 23  // Puedes ajustar según lo necesites
+        targetSdk = 33  // Asegúrate de que coincida con compileSdk
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        debug {
+            // No se recomienda reducir código o recursos en modo debug
+            minifyEnabled false
+            shrinkResources false
+        }
+        release {
+            // Configuración de minificación para el build de release
+            minifyEnabled true  // Habilita ProGuard para reducir y ofuscar el código
+            shrinkResources true  // Elimina recursos no utilizados
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            // Configuración de la firma para release
+            signingConfig signingConfigs.debug  // Cambia esto a `signingConfigs.release` si tienes configurada la firma de release
+        }
+    }
+}
+
+flutter {
+    source = "../.."  // Especifica la ruta de origen de Flutter en relación con el proyecto
+}
+
+dependencies {
+    // Importa la BoM (Bill of Materials) de Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+
+    // Añade las dependencias de Firebase que necesitas
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-storage")
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-appcheck-debug")
+
+    // Ejemplo de otras posibles dependencias que podrías necesitar
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.20")
+}
+
